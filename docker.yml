@@ -1,0 +1,23 @@
+---
+- hosts: docker
+  gather_facts: false
+  become: true
+  tasks:
+    
+    - name: delete exist image
+      shell: docker rmi mywebsite -f
+      
+    - name: delete exist image
+      shell: docker rm website -f 
+
+    - name: delete exist image
+      copy:
+        src: /tmp/index.html
+        dest: /opt/web
+
+
+    - name: build a new image
+      shell: docker build -t mywebsite .
+
+    - name: run a contaire from image for mywebsite
+      shell: docker run -dit --name website -p 999:80 mywebsite 
