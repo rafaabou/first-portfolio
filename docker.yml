@@ -5,7 +5,7 @@
   tasks:
 
 
-     - name: listes images
+    - name: listes images
       shell: docker ps
 
     - name: listes containers
