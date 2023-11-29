@@ -3,21 +3,22 @@
   gather_facts: false
   become: true
   tasks:
-    
+
+
+    - name: delete exist container
+      shell: docker rm website -f
+
     - name: delete exist image
       shell: docker rmi mywebsite -f
-      
-    - name: delete exist image
-      shell: docker rm website -f 
 
     - name: delete exist image
       copy:
-        src: /tmp/index.html
+        src: /tmp/
         dest: /opt/web
 
 
     - name: build a new image
-      shell: docker build -t mywebsite .
+      shell: docker build -t mywebsite /opt/web/.
 
     - name: run a contaire from image for mywebsite
-      shell: docker run -dit --name website -p 999:80 mywebsite 
+      shell: docker run -dit --name website -p 10:80 mywebsite
