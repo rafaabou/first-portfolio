@@ -5,6 +5,12 @@
   tasks:
 
 
+     - name: listes images
+      shell: docker ps
+
+    - name: listes containers
+      shell: docker images  
+
     - name: delete exist container
       shell: docker rm website -f
 
@@ -22,3 +28,10 @@
 
     - name: run a contaire from image for mywebsite
       shell: docker run -dit --name website -p 10:80 mywebsite
+    
+
+    - name: listes images
+      shell: docker ps
+
+    - name: listes containers
+      shell: docker images  
